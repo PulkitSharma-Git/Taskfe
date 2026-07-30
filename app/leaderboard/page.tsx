@@ -4,13 +4,17 @@ import { useEffect, useState } from "react";
 import { apiRequest } from "@/lib/api";
 import type { PostItem } from "@/types";
 
+interface LeaderboardPostItem extends PostItem {
+  rank: number;
+}
+
 export default function LeaderboardPage() {
-  const [posts, setPosts] = useState<PostItem[]>([]);
+  const [posts, setPosts] = useState<LeaderboardPostItem[]>([]);
 
   useEffect(() => {
     const load = async () => {
       try {
-        const result = await apiRequest<PostItem[]>("/leaderboard");
+        const result = await apiRequest<LeaderboardPostItem[]>("/leaderboard");
         setPosts(result);
       } catch (error) {
         console.error(error);
@@ -38,7 +42,7 @@ export default function LeaderboardPage() {
           <tbody>
             {posts.map((post) => (
               <tr key={post.id} className="border-t border-zinc-200">
-                <td className="px-4 py-3">#{post.score.toFixed(0)}</td>
+                <td className="px-4 py-3">#{post.rank}</td>
                 <td className="px-4 py-3">{post.title}</td>
                 <td className="px-4 py-3">{post.author.username}</td>
                 <td className="px-4 py-3">{post.likesCount}</td>
