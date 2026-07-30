@@ -9,6 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   title: "Black & White Social",
   description: "A polished social posts app with auth, feed, leaderboard, and analytics.",
+  
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
